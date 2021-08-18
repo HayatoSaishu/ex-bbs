@@ -3,7 +3,7 @@ package com.example.domain;
 import java.util.List;
 
 /**
- * 記事の情報を表すドメイン
+ * 記事の情報を表すドメイン.
  * 
  * @author hayato.saishu
  *
