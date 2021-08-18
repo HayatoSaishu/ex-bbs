@@ -30,8 +30,8 @@
 		名前:<br>
 		<input type="text" name="name"><br>
 		コメント:<br>
-		<textarea rows="5" cols="50" name="content"></textarea>
-		<input type="hidden" name="articleId" value="${article.id}">
+		<textarea rows="5" cols="50" name="content"></textarea><br>
+		<input type="hidden" name="articleId" th:value="${article.id}">
 		<button>コメント投稿</button>
 	</form>
 	<hr>
