@@ -1,8 +1,16 @@
 package com.example.form;
 
+/**
+ * 記事を投稿する際のリクエストパラメータを受け取るフォーム.
+ * 
+ * @author hayato.saishu
+ *
+ */
 public class ArticleForm {
 
+	/**　投稿者名　*/
 	private String name;
+	/**　記事内容　*/
 	private String content;
 
 	public ArticleForm() {
