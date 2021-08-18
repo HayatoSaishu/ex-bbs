@@ -68,12 +68,25 @@ public class ArticleController {
 		return "redirect:/article";
 	}
 	
+	/**
+	 * フォームで受け取った内容をcommentsテーブルにインサートする.
+	 * 
+	 * @param form コメントを投稿する際のリクエストパラメータを受け取るフォーム
+	 * @return　トップページへリダイレクト
+	 */
 	@RequestMapping("/insert-comment")
 	public String insertComment(CommentForm form) {
 		Comment comment = new Comment();
 		BeanUtils.copyProperties(form, comment);
 		
 		commentRepository.insert(comment);
+		
+		return "redirect:/article";
+	}
+	
+	@RequestMapping("/delete-article")
+	public String deleteArticle(Integer id) {
+		articleRepository.deleteById(id);
 		
 		return "redirect:/article";
 	}

@@ -1,9 +1,18 @@
 package com.example.form;
 
+/**
+ * コメント投稿の際のリクエストパラメータを受け取るフォーム.
+ * 
+ * @author hayato.saishu
+ *
+ */
 public class CommentForm {
 
+	/** 記事ID */
 	private Integer articleId;
+	/** コメント者名 */
 	private String name;
+	/** コメント内容 */
 	private String content;
 
 	public CommentForm() {
