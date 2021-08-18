@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Article;
+import com.example.domain.Comment;
 import com.example.form.ArticleForm;
+import com.example.form.CommentForm;
 import com.example.repository.ArticleRepository;
+import com.example.repository.CommentRepository;
 
 /**
  * 記事情報を操作するコントローラ.
@@ -23,16 +28,27 @@ public class ArticleController {
 	@Autowired
 	private ArticleRepository articleRepository;
 	
+	@Autowired
+	private CommentRepository commentRepository;
+	
 	/**
-	 * 記事情報一覧を表示する.
+	 * 記事情報一覧とコメント情報一覧を表示する.
 	 * 
 	 * @param model リクエストスコープへ格納
 	 * @return　記事情報一覧」のページへフォワード
 	 */
 	@RequestMapping("")
 	public String index(Model model) {
-		model.addAttribute("articleList", articleRepository.findAll());
 		
+		List<Article> articleList = articleRepository.findAll();
+		
+		
+		for(Article article : articleList) {
+			List<Comment> commentList = commentRepository.findByArticleId(article.getId());
+			article.setCommentList(commentList);
+		}
+		
+		model.addAttribute("articleList", articleList);
 		return "article/article-list";
 	}
 	
@@ -51,4 +67,15 @@ public class ArticleController {
 		
 		return "redirect:/article";
 	}
+	
+	@RequestMapping("/insert-comment")
+	public String insertComment(CommentForm form) {
+		Comment comment = new Comment();
+		BeanUtils.copyProperties(form, comment);
+		
+		commentRepository.insert(comment);
+		
+		return "redirect:/article";
+	}
+	
 }
