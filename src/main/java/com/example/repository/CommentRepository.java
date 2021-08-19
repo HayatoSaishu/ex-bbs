@@ -43,7 +43,7 @@ public class CommentRepository {
 	 */
 	public List<Comment> findByArticleId(Integer articleId){
 		
-		String sql = "SELECT id, name, content, article_id FROM comments WHERE article_id=:articleId ORDER BY id;";
+		String sql = "SELECT id, name, content, article_id FROM comments WHERE article_id=:articleId ORDER BY id DESC;";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("articleId", articleId);
 		
@@ -53,7 +53,7 @@ public class CommentRepository {
 	}
 	
 	/**
-	 * コメントを投稿する/
+	 * コメントを投稿する.
 	 * 
 	 * @param comment コメント情報のドメイン
 	 */

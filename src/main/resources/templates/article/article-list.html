@@ -20,14 +20,14 @@
 	投稿内容: 
 	<span th:text="${article.content}"></span><br>
 	<form th:action="@{/article/delete-article}" method="post">
-		<button name="articleId" th:value="${artcle.id}"></button><br>
+		<button type="submit" name="articleId" th:value="${article.id}">記事削除</button><br>
 	</form>
-	<span th:each="comment:${article.commentList}">
+	<div th:each="comment:${article.commentList}">
 		コメント者名:
 		<span th:text="${comment.name}"></span><br>
 		コメント内容: 
 		<span th:text="${comment.content}"></span><br>
-	</span>
+	</div>
 	
 	
 	<form th:action="@{/article/insert-comment}" th:object="${commentForm}" method="post">
